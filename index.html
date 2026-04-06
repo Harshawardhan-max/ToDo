@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A polished, local-first to-do list web app that runs directly in the browser."
+    />
+    <title>FocusFlow Todo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <main class="app-card">
+        <section class="hero-panel">
+          <div class="hero-copy">
+            <p class="eyebrow">Daily Focus</p>
+            <h1>Keep your day moving.</h1>
+            <p class="hero-text">
+              A ready-to-use to-do list that keeps everything saved in your
+              browser, so your tasks are still here when you come back.
+            </p>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-card stat-card--accent">
+              <span class="stat-card__label">Today</span>
+              <strong class="stat-card__value" id="todayLabel">Loading...</strong>
+            </div>
+            <div class="stat-grid">
+              <div class="stat-card">
+                <span class="stat-card__label">All Tasks</span>
+                <strong class="stat-card__value" id="totalCount">0</strong>
+              </div>
+              <div class="stat-card">
+                <span class="stat-card__label">Completed</span>
+                <strong class="stat-card__value" id="completedCount">0</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="todo-panel">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow eyebrow--small">Task Board</p>
+              <h2>Your to-do list</h2>
+            </div>
+            <button class="secondary-button" id="clearCompletedButton" type="button">
+              Clear completed
+            </button>
+          </div>
+
+          <form class="todo-form" id="todoForm">
+            <label class="sr-only" for="todoInput">Add a task</label>
+            <input
+              id="todoInput"
+              type="text"
+              maxlength="140"
+              placeholder="Add a task and press Enter"
+              autocomplete="off"
+            />
+            <button class="primary-button" type="submit">Add task</button>
+          </form>
+
+          <div class="controls">
+            <div class="filters" role="tablist" aria-label="Task filters">
+              <button class="filter-button is-active" type="button" data-filter="all">
+                All
+              </button>
+              <button class="filter-button" type="button" data-filter="active">
+                Active
+              </button>
+              <button class="filter-button" type="button" data-filter="completed">
+                Completed
+              </button>
+            </div>
+
+            <label class="search-field" for="searchInput">
+              <span class="sr-only">Search tasks</span>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Search tasks"
+                autocomplete="off"
+              />
+            </label>
+          </div>
+
+          <p class="status-copy" id="statusCopy">0 tasks left to finish.</p>
+
+          <ul class="todo-list" id="todoList" aria-live="polite"></ul>
+
+          <div class="empty-state" id="emptyState" hidden>
+            <h3>No tasks match this view.</h3>
+            <p>Add a new one above, or switch filters to see everything again.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="todoItemTemplate">
+      <li class="todo-item">
+        <label class="todo-check">
+          <input class="todo-toggle" type="checkbox" />
+          <span class="todo-check__mark" aria-hidden="true"></span>
+        </label>
+        <div class="todo-content">
+          <p class="todo-text"></p>
+          <span class="todo-meta"></span>
+        </div>
+        <div class="todo-actions">
+          <button class="icon-button edit-button" type="button" aria-label="Edit task">
+            Edit
+          </button>
+          <button class="icon-button delete-button" type="button" aria-label="Delete task">
+            Delete
+          </button>
+        </div>
+      </li>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
